@@ -1,0 +1,189 @@
+<html>
+
+<head>
+<meta charset="utf-8"></meta>
+<title>軟體工程師扶持計畫 Week 2 - by Denny</title>
+
+
+<script>
+
+//作業一
+function calculate(min, max){
+    var i = min
+    var j = max
+    var sum = 0
+
+    for(i; i<=j; i++){
+        sum = sum + i
+    }
+    console.log(sum);
+    //return sum;
+
+
+// 請用你的程式補完這個函式的區塊
+}
+calculate(1, 3); // 你的程式要能夠計算 1+2+3，最後印出 6
+calculate(4, 8); // 你的程式要能夠計算 4+5+6+7+8，最後印出 30
+
+
+
+//作業二
+function avg(data){
+
+    /*
+    console.log(data); // 看資料
+    console.log(data.count); // 看 count 資料
+    console.log(data.employees, data.employees[0], data.employees[0].salary); // 看資料 + 看值
+    */
+    
+    var staff_total = data.count; // 將員工數量從物件取出，存到變數
+    var sum = 0 //設定薪水總和初始值
+    var i = 0 //設定變數 i 初始值
+    var avgsum = 0 //設定平均薪資初始值
+
+    for(i; i < staff_total; i++){
+        sum = sum + data.employees[i].salary
+    }
+
+    avgsum = sum / staff_total
+    console.log(avgsum);
+
+// 請用你的程式補完這個函式的區塊
+}
+
+avg({
+    "count":3,
+    "employees":[
+        {
+        "name":"John",
+        "salary":30000
+        },
+        {
+        "name":"Bob",
+        "salary":60000
+        },
+        {
+        "name":"Jenny",
+        "salary":50000
+        }
+    ]
+}); // 呼叫 avg 函式
+
+
+
+//作業三
+function maxProduct(nums){
+
+    /*
+    // 一樣先用排序陣列的方式做一次
+    nums.sort((x,y) => y - x);
+    console.log(...nums,nums[0]*nums[1]);
+    */
+
+    //console.log(nums, ...nums); //看資料跟展開後資料
+
+    var max_nums = Math.max(...nums); //抓陣列最大值
+    var second_nums = Math.min(...nums); //抓陣列最小值
+    var i = 0;
+
+
+    //開始逐一比較陣列每個元素
+    for(i; i < nums.length ; i++){
+        if (max_nums != nums[i] ){
+            if (nums[i] > second_nums) {
+                second_nums = nums[i];
+            }
+        }
+    }
+
+    console.log(max_nums*second_nums);
+    
+// 請用你的程式補完這個函式的區塊
+}
+maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
+maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
+
+
+
+//作業四
+
+function twoSum(nums, target){
+
+    // console.log(nums, target, nums.length);
+    var i = 0, j = 1;
+    var sum, result;
+
+    for(i; i < nums.length - 1 ; i++){
+
+        for (j; j < nums.length; j++){
+            sum = nums[i] + nums[j];
+
+            if (sum == target){
+                result=[i, j];
+                break;
+            }
+        }
+    }
+     return result
+
+    // your code here
+}
+result=twoSum([2, 11, 7, 15], 9)
+console.log(result) // show [0, 2] because nums[0]+nums[2] is 9
+
+
+
+//作業五
+
+/*
+作業五
+構想 取得 list 元素個數
+使用迴圈，判斷元素是否為 0，是的話計數 +1，繼續迴圈
+不是的話，計數清空重算
+跑完迴圈後，重新排列 LIST 取出最大值
+*/
+
+function maxZeros(nums){
+
+    var input_list = nums;
+    var repeat_times = 0;
+    var list_repeat_times = [0];
+    var i = 0;
+
+
+    for(i; i < input_list.length ; i++){
+        if (input_list[i] == 0){
+            repeat_times = repeat_times + 1;
+            list_repeat_times.push(repeat_times);
+        }
+            else {
+                repeat_times = 0;
+            }
+
+        }
+
+    list_repeat_times = list_repeat_times.sort((x,y) => y - x);
+    console.log(list_repeat_times[0]);
+
+// 請用你的程式補完這個函式的區塊
+}
+maxZeros([0, 1, 0, 0]) // 得到 2
+maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]) // 得到 4
+maxZeros([1, 1, 1, 1, 1]) // 得到 0
+
+
+</script>
+
+</head>
+
+<body>
+
+    作業結果以 console.log 方式秀出。
+
+</body>
+
+
+
+
+
+</html>
