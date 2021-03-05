@@ -75,11 +75,6 @@ avg({
 //作業三
 function maxProduct(nums){
 
-/*
-// 一樣先用排序陣列的方式做一次
-nums.sort((x,y) => y - x);
-console.log(...nums,nums[0]*nums[1]);
-*/
 
 //console.log(nums, ...nums); //看資料跟展開後資料
 
@@ -88,7 +83,7 @@ var min_nums = Math.min(...nums); //抓陣列最小值
 var key_nums = Math.min(...nums); //先把要比較的數字設定最小
 var i, a, b;
 
-//開始逐一比較陣列每個元素
+//開始逐一比較陣列每個元素，抓出次大
 for(i = 0; i < nums.length ; i++){
     if (max_nums != nums[i] ){
         if (nums[i] > key_nums) {
@@ -99,7 +94,8 @@ for(i = 0; i < nums.length ; i++){
 // 先把最大兩個相乘數值結果放到變數 a
 a = max_nums*key_nums;
 
-var key_nums = Math.max(...nums); //再把要比較的數字設定最大
+//開始逐一比較陣列每個元素，抓出次小
+var key_nums = Math.max(...nums); //把要比較的數字設定最大
 for(i = 0; i < nums.length ; i++){
     if (min_nums != nums[i] ){
         if (nums[i] < key_nums) {
