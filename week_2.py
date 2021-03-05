@@ -78,25 +78,51 @@ avg({
 
 
 
-
 #作業三
 def maxProduct(nums):
 
+    #排序做法
     #sortnums = sorted(nums,reverse=True) #將 list 由大到小排序
     #print(sortnums) #印出來看看對不對
-    #print(sortnums[0]*sortnums[1]) #將前面兩個相乘即為答案
+    #最大 sortnums[0]*sortnums[1] 跟最小 sortnums[-1]*sortnums[-2]
+    #比較結果，輸出大的值
 
+    #非排序做法
     #抓取 List 中的最大及最小值
     max_nums = max(nums)
-    second_nums = min(nums)
+    min_nums = min(nums)
+    
+    #先把要比較的數字設定為最小
+    key_nums = min(nums)
 
-    #依序比較 List 中所有元素的大小，過程中如果比最小大，且比最大小，先存起來當作第二大
+    #找次大
     for i in range(len(nums)):
-        #print("目前 i", i, max_nums, nums[i], second_nums)
-        if max_nums > nums[i] > second_nums:
-            second_nums = nums[i]
-           #print("印出目前最大、次大", max_nums, second_nums)
-    print(max_nums*second_nums)
+        #print("目前 i", i, max_nums, nums[i], min_nums, key_nums)
+        if max_nums > nums[i] > min_nums:
+            if nums[i] > key_nums:
+                key_nums = nums[i]
+    
+    #陣列最大兩數字相乘結果為變數 a
+    a = (max_nums*key_nums)
+
+    #先把要比較的數字設定為最大
+    key_nums = max(nums)
+
+    #找次小
+    for i in range(len(nums)):
+        if max_nums > nums[i] > min_nums:
+            if nums[i] < key_nums:
+                key_nums = nums[i]
+
+    #陣列最小兩數字相乘結果為變數 b
+    b = (min_nums*key_nums)
+
+    #兩個變數比較後輸出結果
+    if a > b:
+        print(a)
+    else:
+        print(b)
+
     return
 
 maxProduct([5, 20, 2, 6]) # 得到 120 因為 20 和 6 相乘得到最大值
@@ -117,7 +143,9 @@ def twoSum(nums, target):
             #如果數字加總等於目標數字，傳回結果，跳出迴圈
             if sum == target:
                 #print("---------",i, j, nums[i], nums[j], nums[i]+nums[j], sum)
-                result=[i, j]
+                result = [i, j]
+                #將 LIST 結果，由小到大排序
+                result = sorted(result)
                 #print(result)
                 break
 
