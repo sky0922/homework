@@ -7,6 +7,7 @@
 
 <script>
 
+
 //作業一
 function calculate(min, max){
     var i = min
@@ -74,30 +75,52 @@ avg({
 //作業三
 function maxProduct(nums){
 
-    /*
-    // 一樣先用排序陣列的方式做一次
-    nums.sort((x,y) => y - x);
-    console.log(...nums,nums[0]*nums[1]);
-    */
+/*
+// 一樣先用排序陣列的方式做一次
+nums.sort((x,y) => y - x);
+console.log(...nums,nums[0]*nums[1]);
+*/
 
-    //console.log(nums, ...nums); //看資料跟展開後資料
+//console.log(nums, ...nums); //看資料跟展開後資料
 
-    var max_nums = Math.max(...nums); //抓陣列最大值
-    var second_nums = Math.min(...nums); //抓陣列最小值
-    var i = 0;
+var max_nums = Math.max(...nums); //抓陣列最大值
+var min_nums = Math.min(...nums); //抓陣列最小值
+var key_nums = Math.min(...nums); //先把要比較的數字設定最小
+var i, a, b;
 
-
-    //開始逐一比較陣列每個元素
-    for(i; i < nums.length ; i++){
-        if (max_nums != nums[i] ){
-            if (nums[i] > second_nums) {
-                second_nums = nums[i];
-            }
+//開始逐一比較陣列每個元素
+for(i = 0; i < nums.length ; i++){
+    if (max_nums != nums[i] ){
+        if (nums[i] > key_nums) {
+            key_nums = nums[i];
         }
     }
+}
+// 先把最大兩個相乘數值結果放到變數 a
+a = max_nums*key_nums;
 
-    console.log(max_nums*second_nums);
-    
+var key_nums = Math.max(...nums); //再把要比較的數字設定最大
+for(i = 0; i < nums.length ; i++){
+    if (min_nums != nums[i] ){
+        if (nums[i] < key_nums) {
+            key_nums = nums[i];
+        }
+    }
+}
+
+// 再把最小兩個數值相乘結果放到變數 b
+b = Math.min(...nums)*key_nums;
+
+//console.log(a,b);
+
+if (a > b) {
+    console.log(a);
+}
+else {
+    console.log(b);
+}
+
+
 // 請用你的程式補完這個函式的區塊
 }
 maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
@@ -110,20 +133,28 @@ maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 相乘得到最大值
 function twoSum(nums, target){
 
     // console.log(nums, target, nums.length);
-    var i = 0, j = 1;
-    var sum, result;
+    var i = 0, j;
+    var result;
 
     for(i; i < nums.length - 1 ; i++){
 
-        for (j; j < nums.length; j++){
-            sum = nums[i] + nums[j];
-
-            if (sum == target){
-                result=[i, j];
-                break;
+        for (j = 1; j < nums.length; j++){
+            //console.log(nums[i] + nums[j]);
+            //只有兩個數好像也不用排序了，比大小來輸出結果就好
+            if (nums[i] + nums[j] == target){
+                if (i < j){
+                    result=[i, j];
+                    break;
+                }
+                else {
+                    result=[j, i];
+                    break;
+                }
+                
             }
         }
     }
+    
      return result
 
     // your code here
@@ -181,8 +212,6 @@ maxZeros([1, 1, 1, 1, 1]) // 得到 0
     作業結果以 console.log 方式秀出。
 
 </body>
-
-
 
 
 
