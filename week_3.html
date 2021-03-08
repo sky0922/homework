@@ -1,41 +1,40 @@
-
-<!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="utf-8"></meta>
 <meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no" data-reactid=".0.0.3">
-<title>軟體工程師扶持計畫 Week 3 - by Denny</title>
+<title>軟體工程師扶持計畫 Week 1 - by Denny</title>
 
 <script>
 
 var data;
 var data_object;
-
+    
 function getData(){
     var req = new XMLHttpRequest ();   
     req.open ("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
     req.onload=function(){
         data = this.response; // 抓到的資料是字串
         data_object = JSON.parse(data); // 將字串轉為物件
-
+    
         var results = data_object.result.results; // 把 results 陣列丟給變數
         var i, first_pic_url;
-        //console.log(results[0].stitle);
-
+        console.log(results[0].stitle);
+    
         for (i = 0; i < 8; i++){
             first_pic_url = results[i].file;
             first_pic_url = "http"+first_pic_url.split("http", 2)[1];
             console.log(results[i].stitle, first_pic_url); //前八筆資料的 title
         }
-
+    
     }
     req.send();
-
+    
 }
-
+    
 </script>
-
+  
+  
 <style type="text/css">
 
 	body{
@@ -217,74 +216,80 @@ function getData(){
 		width: 100%;
 	}
 
+
+
+
 </style>
 
-
-
-
-
 </head>
+
 <body onload="getData()">
 
 
-    <input type="checkbox" name="" id="menu_check">
+<input type="checkbox" name="" id="menu_check">
 
-    <div class="header">
-        <div class="logo"><a href="#">My Website</a></div>
-        <label for="menu_check" class="menu_btn"><span>選單</span></label>
-        <nav>
-            <a href="#">MENU 1</a>
-            <a href="#">MENU 2</a>
-            <a href="#">MENU 3</a>
-            <a href="#">MENU 4</a>
-        </nav>
-    </div>
-    
-    
-    <div class="top_area">Butterflies are flying...</div>
-    
-    <div class="content">
-    
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-    
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-        <div class="box">
-            <img src="pexels-pixabay-326055.jpg" alt="">
-            <div class="title">Butterflies are flying...</div>
-        </div>
-    
-    
-    
-    
-    
-    </div>
-    
-    
+<div class="header">
+	<div class="logo"><a href="#">My Website</a></div>
+	<label for="menu_check" class="menu_btn"><span>選單</span></label>
+	<nav>
+		<a href="#">MENU 1</a>
+		<a href="#">MENU 2</a>
+		<a href="#">MENU 3</a>
+		<a href="#">MENU 4</a>
+	</nav>
+</div>
+
+
+<div class="top_area">Butterflies are flying...</div>
+
+<div class="content">
+
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+
+
+
+
+
+</div>
+
+
 
 </body>
+
+
+
+
+
+</html>
