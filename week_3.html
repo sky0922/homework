@@ -18,13 +18,34 @@ function getData(){
         data_object = JSON.parse(data); // 將字串轉為物件
     
         var results = data_object.result.results; // 把 results 陣列丟給變數
-        var i, first_pic_url;
-        console.log(results[0].stitle);
-    
+        var i, first_pic_url; // 宣告變數
+        //console.log(results[0].stitle); // 看第一筆資料的 title
+
+		//var content = document.getElementById("content");
+
         for (i = 0; i < 8; i++){
             first_pic_url = results[i].file;
-            first_pic_url = "http"+first_pic_url.split("http", 2)[1];
+            first_pic_url = "http"+first_pic_url.split("http", 2)[1]; //切出第一張圖片的 URL
             console.log(results[i].stitle, first_pic_url); //前八筆資料的 title
+
+			//<div class="top_area">Butterflies are flying...</div>
+			
+			var newDIV = document.createElement("div"); //創建父項
+			newDIV.setAttribute("class","box"); //設定 class 屬性
+			content.appendChild(newDIV); //增加子項
+
+			var img = document.createElement("img"); //創建父項
+			img.setAttribute("src", first_pic_url); //設定 class 屬性
+			newDIV.appendChild(img); //增加子項
+
+			var DIVtitle = document.createElement("div"); //創建父項
+			//DIVtitle.setAttribute("class","title"); 
+			var title = document.createTextNode(results[i].stitle); //抓 title
+			newDIV.appendChild(title); //增加子項
+
+			console.log(content, newDIV, DIVtitle);
+
+
         }
     
     }
@@ -106,7 +127,7 @@ function getData(){
 		display: block;
 		position: absolute;
 		top: 14px;
-		left: 5px;
+		left: 10px;
 		font-size:20px;
 		text-decoration: none;
 	}
@@ -143,8 +164,10 @@ function getData(){
 
 	.box{
 		border:solid;
+		border-color:grey;
 		border-radius: 8px;
-		margin-bottom:10px;
+		font-size:20px;
+		margin:7px;
 		display:inline-block;
 		vertical-align:top;
 		text-align:center;
@@ -214,6 +237,8 @@ function getData(){
 		border-radius: 8px;
 		display: block;
 		width: 100%;
+
+		overflow:hidden;
 	}
 
 
@@ -240,27 +265,11 @@ function getData(){
 </div>
 
 
-<div class="top_area">Butterflies are flying...</div>
+<div class="top_area">Welcome to my Home</div>
 
-<div class="content">
+<div class="content" id="content">
 
-	<div class="box">
-		<img src="pexels-pixabay-326055.jpg" alt="">
-		<div class="title">Butterflies are flying...</div>
-	</div>
-	<div class="box">
-		<img src="pexels-pixabay-326055.jpg" alt="">
-		<div class="title">Butterflies are flying...</div>
-	</div>
-	<div class="box">
-		<img src="pexels-pixabay-326055.jpg" alt="">
-		<div class="title">Butterflies are flying...</div>
-	</div>
-	<div class="box">
-		<img src="pexels-pixabay-326055.jpg" alt="">
-		<div class="title">Butterflies are flying...</div>
-	</div>
-
+	<!--
 	<div class="box">
 		<img src="pexels-pixabay-326055.jpg" alt="">
 		<div class="title">Butterflies are flying...</div>
@@ -278,7 +287,24 @@ function getData(){
 		<div class="title">Butterflies are flying...</div>
 	</div>
 
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
 
+	
 
 
 
