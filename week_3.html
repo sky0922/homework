@@ -1,0 +1,295 @@
+<html>
+
+<head>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no" data-reactid=".0.0.3">
+<title>軟體工程師扶持計畫 Week 1 - by Denny</title>
+
+<script>
+
+var data;
+var data_object;
+    
+function getData(){
+    var req = new XMLHttpRequest ();   
+    req.open ("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
+    req.onload=function(){
+        data = this.response; // 抓到的資料是字串
+        data_object = JSON.parse(data); // 將字串轉為物件
+    
+        var results = data_object.result.results; // 把 results 陣列丟給變數
+        var i, first_pic_url;
+        console.log(results[0].stitle);
+    
+        for (i = 0; i < 8; i++){
+            first_pic_url = results[i].file;
+            first_pic_url = "http"+first_pic_url.split("http", 2)[1];
+            console.log(results[i].stitle, first_pic_url); //前八筆資料的 title
+        }
+    
+    }
+    req.send();
+    
+}
+    
+</script>
+  
+  
+<style type="text/css">
+
+	body{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.header{
+		height: 50px;
+		background-color: pink;
+		align-items: center;
+	}
+
+	/* 漢堡圖區塊 */
+	.menu_btn{
+		width: 50px;
+		height: 40px;
+		background-color: #46A3FF;
+		border-radius: 8px;
+		display: block;
+		position: absolute;
+		top: 5px;
+		right: 5px;
+	}
+
+	/* 開始繪製漢堡三條線 */
+	.menu_btn::before{
+		content: "";
+		position: absolute;
+		height: 5px;
+		width: 40px;
+		left: 5;
+		background-color: rgb(61, 64, 65);
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		box-shadow: 0px 10px 0px rgb(61, 64, 65),
+				0px -10px 0px rgb(61, 64, 65);
+	}
+
+	/* 隱藏 span 內的文字 */
+	.menu_btn span{
+		opacity: 0;
+	}
+
+	/* 選單區塊 */
+	nav{
+		width: 40%;
+		background-color: gray;
+		position: absolute;
+		top: -500%;
+		right:5px;
+		transition: 0.2s;
+		text-align: center;
+	}
+
+	/* 選單樣式 */
+	nav a{
+		display: block;
+		text-decoration: none;
+		color:blue;
+		padding: 10px;
+		border-bottom: 1px solid #ffffff;
+		font-size:20px;
+	}
+
+	/* 定位 logo */
+	.logo a{
+		display: block;
+		position: absolute;
+		top: 14px;
+		left: 5px;
+		font-size:20px;
+		text-decoration: none;
+	}
+
+
+	#menu_check{
+		position: absolute;
+		opacity: 0;
+		//z-index: 2;
+	}
+
+	#menu_check:checked ~ .header nav{
+		top:50px;
+	}
+
+	.top_area{
+		background-color:#97CBFF;
+		height:300px;
+		line-height:300px;
+		font-weight:bold;
+		font-size:25px; /* 以小螢幕開始設計，預設字級較小 */
+		text-align:center;
+		text-shadow: 2px 4px 6px #333333;
+		}
+
+	.content{
+		//background-color:lightgreen;
+		width:90%;
+		margin-right:auto;
+		margin-left:auto;
+		margin-top:15px;
+		text-align:center;
+		}
+
+	.box{
+		border:solid;
+		border-radius: 8px;
+		margin-bottom:10px;
+		display:inline-block;
+		vertical-align:top;
+		text-align:center;
+		background-color: #97CBFF;
+		}
+
+	.title{
+		text-align:center;
+		padding:5px;
+		font-size:20px;
+		}
+
+
+	@media screen and (min-width:600px){
+
+		.box{
+			width:45%;
+		}
+
+		.menu_btn{
+			display: none;
+		}
+
+		.top_area{
+			font-size:40px; 
+			}
+
+		.header{
+			display: flex;
+			justify-content: space-between;
+		}
+
+		nav{
+			display: flex;
+			top: 0;
+			width: auto;
+			height: 50px;
+  			align-items: center;
+			background-color: pink;
+		}
+
+		nav a{
+			//border: solid #000;
+			border-bottom: 0px;
+		}
+
+	@media screen and (min-width:1200px)  {
+
+		.content{
+			//background-color:yellow;
+			width:1200px;
+			}
+
+		.box{
+			width:23%;
+		}
+
+	}
+
+
+	}
+
+
+
+
+	img{
+		border-radius: 8px;
+		display: block;
+		width: 100%;
+	}
+
+
+
+
+</style>
+
+</head>
+
+<body onload="getData()">
+
+
+<input type="checkbox" name="" id="menu_check">
+
+<div class="header">
+	<div class="logo"><a href="#">My Website</a></div>
+	<label for="menu_check" class="menu_btn"><span>選單</span></label>
+	<nav>
+		<a href="#">MENU 1</a>
+		<a href="#">MENU 2</a>
+		<a href="#">MENU 3</a>
+		<a href="#">MENU 4</a>
+	</nav>
+</div>
+
+
+<div class="top_area">Butterflies are flying...</div>
+
+<div class="content">
+
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+	<div class="box">
+		<img src="pexels-pixabay-326055.jpg" alt="">
+		<div class="title">Butterflies are flying...</div>
+	</div>
+
+
+
+
+
+</div>
+
+
+
+</body>
+
+
+
+
+
+</html>
