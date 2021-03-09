@@ -6,53 +6,67 @@
 <title>軟體工程師扶持計畫 Week 3 - by Denny</title>
 
 <script>
-
-var data;
-var data_object;
     
 function getData(){
-    var req = new XMLHttpRequest ();   
-    req.open ("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json")
-    req.onload=function(){
-        data = this.response; // 抓到的資料是字串
-        data_object = JSON.parse(data); // 將字串轉為物件
-    
-        var results = data_object.result.results; // 把 results 陣列丟給變數
-        var i, first_pic_url; // 宣告變數
-        //console.log(results[0].stitle); // 看第一筆資料的 title
+    let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 
-		var content = document.getElementById("content");
+   fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
+        .then(resp => {
+                resp.json().then(json => {
+                    let data = json.result.results.slice(0, 8); // 將 json 資料中的 1-8 筆
+                    data.forEach(item => {
+                        let newDIV = document.createElement("div"); //創建父項
+                        newDIV.setAttribute("class","box"); //設定父項 class 屬性
+                        content.appendChild(newDIV); //增加子項
 
-        for (i = 0; i < 8; i++){
-            first_pic_url = results[i].file;
-            first_pic_url = "http"+first_pic_url.split("http", 2)[1]; //切出第一張圖片的 URL
-            console.log(results[i].stitle, first_pic_url); //前八筆資料的 title
+                        let first_pic_url = "http"+item.file.split("http", 2)[1]; //切出第一張圖片的 URL
+                        let img = document.createElement("img"); //創建父項
+                        img.setAttribute("src", first_pic_url); //設定父項 class 屬性
+                        newDIV.appendChild(img); //增加子項
 
-			//<div class="top_area">Butterflies are flying...</div>
-			
-			var newDIV = document.createElement("div"); //創建父項
-			newDIV.setAttribute("class","box"); //設定 class 屬性
-			content.appendChild(newDIV); //增加子項
-
-			var img = document.createElement("img"); //創建父項
-			img.setAttribute("src", first_pic_url); //設定 class 屬性
-			newDIV.appendChild(img); //增加子項
-
-			var DIVtitle = document.createElement("div"); //創建父項
-			//DIVtitle.setAttribute("class","title"); 
-			var title = document.createTextNode(results[i].stitle); //抓 title
-			newDIV.appendChild(title); //增加子項
-
-			console.log(content, newDIV, DIVtitle);
-
-
-        }
-    
-    }
-    req.send();
-    
+                        let DIVtitle = document.createElement("div"); //創建父項
+                        let title = document.createTextNode(item.stitle); //抓 title
+                        newDIV.appendChild(title); //增加子項
+                    });
+                });
+        }).catch(err => {
+            console.log(err);
+        });
 }
-    
+
+fetch() 
+
+
+
+function addData(){
+    let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
+
+   fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
+        .then(resp => {
+                resp.json().then(json => {
+					let addmore_start = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 
+                    let data = json.result.results.slice(addmore_start, addmore_start+8);
+                    data.forEach(item => {
+                        let newDIV = document.createElement("div"); //創建父項
+                        newDIV.setAttribute("class","box"); //設定父項 class 屬性
+                        content.appendChild(newDIV); //增加子項
+
+                        let first_pic_url = "http"+item.file.split("http", 2)[1]; //切出第一張圖片的 URL
+                        let img = document.createElement("img"); //創建父項
+                        img.setAttribute("src", first_pic_url); //設定父項 class 屬性
+                        newDIV.appendChild(img); //增加子項
+
+                        let DIVtitle = document.createElement("div"); //創建父項
+                        let title = document.createTextNode(item.stitle); //抓 title
+                        newDIV.appendChild(title); //增加子項
+                    });
+                });
+        }).catch(err => {
+            console.log(err);
+        });
+}
+
+
 </script>
   
   
@@ -237,11 +251,21 @@ function getData(){
 		border-radius: 8px;
 		display: block;
 		width: 100%;
-
 		overflow:hidden;
 	}
 
-
+	.btn_addmore{
+		border: solid;
+		border-color: rgb(218, 205, 205);
+		border-radius:10px;
+		background-color: rgb(92, 115, 247);
+		width: 100px;
+		padding: 5px;
+		margin-top: 10px;
+		margin-left: auto;
+		margin-right: auto;
+		text-align:center;
+	}
 
 
 </style>
@@ -304,13 +328,13 @@ function getData(){
 		<div class="title">Butterflies are flying...</div>
 	</div>
 
-	
+-->
 
 
 
 </div>
 
-
+<div class="btn_addmore" onclick="addData()">載入更多...</div>
 
 </body>
 
