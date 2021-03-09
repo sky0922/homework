@@ -44,7 +44,7 @@ function addData(){
    fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
         .then(resp => {
                 resp.json().then(json => {
-					let addmore_start = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 
+		    let addmore_start = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 
                     let data = json.result.results.slice(addmore_start, addmore_start+8);
                     data.forEach(item => {
                         let newDIV = document.createElement("div"); //創建父項
