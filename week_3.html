@@ -7,13 +7,16 @@
 
 <script>
     
+
+let page=0;
+
 function getData(){
     let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 
    fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
         .then(resp => {
                 resp.json().then(json => {
-                    let data = json.result.results.slice(0, 8); // 將 json 資料中的 1-8 筆
+					let data = json.result.results.slice(page, page+8); // 將 json 資料中的 1-8 筆
                     data.forEach(item => {
                         let newDIV = document.createElement("div"); //創建父項
                         newDIV.setAttribute("class","box"); //設定父項 class 屬性
@@ -38,14 +41,16 @@ fetch()
 
 
 
+
 function addData(){
     let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 
    fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
         .then(resp => {
                 resp.json().then(json => {
-		    let addmore_start = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 
-                    let data = json.result.results.slice(addmore_start, addmore_start+8);
+					// let page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始 
+					page = page + 8;
+                    let data = json.result.results.slice(page, page+8);
                     data.forEach(item => {
                         let newDIV = document.createElement("div"); //創建父項
                         newDIV.setAttribute("class","box"); //設定父項 class 屬性
@@ -267,6 +272,10 @@ function addData(){
 		text-align:center;
 	}
 
+	.foot{
+		margin: 50px;
+	}
+
 
 </style>
 
@@ -335,6 +344,8 @@ function addData(){
 </div>
 
 <div class="btn_addmore" onclick="addData()">載入更多...</div>
+
+<div class="foot"></div>
 
 </body>
 
