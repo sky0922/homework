@@ -25,18 +25,18 @@ function createMyElement(){
 	let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 	fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
 		.then(function(resp) {
-				//console.log(resp);
+		//console.log(resp);
                 resp.json().then(function(json) {
-					//console.log(json);
-					// page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始，如果想隨機載入可以用這個
-					// console.log(page); // 確認 page 變數
+		//console.log(json);
+		// page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始，如果想隨機載入可以用這個
+		// console.log(page); // 確認 page 變數
                     let data = json.result.results.slice(page, page+8); //取出八筆 array 資料
                     data.forEach(function(item) {
                         let newDIV = document.createElement("div"); //創建父項
                         newDIV.setAttribute("class","box"); //設定父項 class 屬性
                         content.appendChild(newDIV); //增加子項
 
-                        let first_pic_url = "http"+item.file.split("http", 2)[1]; //切出第一張圖片的 URL
+                        let first_pic_url = "https"+item.file.split("http", 2)[1]; //切出第一張圖片的 URL
                         let img = document.createElement("img"); 
                         img.setAttribute("src", first_pic_url); 
                         newDIV.appendChild(img);
