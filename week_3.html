@@ -7,26 +7,27 @@
 
 <script>
     
-let page=0;
+let page=0; //設定一個全域變數
 
+// onload 事件時，要做的動作
 function getData(){
-    let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 	createMyElement();
 }
 
-
+// 增加資料時要做的動作
 function addData(){
 	page = page + 8;
 	createMyElement();
 }
 
-
+// 創建元素
 function createMyElement(){
+	let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
 	fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
         .then(resp => {
                 resp.json().then(json => {
 					// let page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始 
-					console.log(page);
+					// console.log(page); // 確認 page 變數
                     let data = json.result.results.slice(page, page+8);
                     data.forEach(item => {
                         let newDIV = document.createElement("div"); //創建父項
