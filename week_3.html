@@ -26,7 +26,7 @@ function createMyElement(){
 	fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
         .then(resp => {
                 resp.json().then(json => {
-					// let page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始 
+					// page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始，隨機載入
 					// console.log(page); // 確認 page 變數
                     let data = json.result.results.slice(page, page+8);
                     data.forEach(item => {
@@ -36,12 +36,14 @@ function createMyElement(){
 
                         let first_pic_url = "http"+item.file.split("http", 2)[1]; //切出第一張圖片的 URL
                         let img = document.createElement("img"); //創建父項
-                        img.setAttribute("src", first_pic_url); //設定父項 class 屬性
+                        img.setAttribute("src", first_pic_url); //設定父項
                         newDIV.appendChild(img); //增加子項
 
                         let DIVtitle = document.createElement("div"); //創建父項
+						DIVtitle.setAttribute("class","title"); //設定父項 class 屬性
                         let title = document.createTextNode(item.stitle); //抓 title
-                        newDIV.appendChild(title); //增加子項
+						newDIV.appendChild(DIVtitle);  //增加子項
+                        DIVtitle.appendChild(title); //增加子項
                     });
                 });
         }).catch(err => {
@@ -163,9 +165,9 @@ function createMyElement(){
 		border:solid;
 		border-color:grey;
 		border-radius: 8px;
-		font-size:20px;
 		margin:7px;
 		display:inline-block;
+		font-size:20px;
 		vertical-align:top;
 		text-align:center;
 		background-color: #97CBFF;
