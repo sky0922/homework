@@ -28,9 +28,9 @@ function createMyElement(){
 		.then(function(resp) {
 		//console.log(resp);
                 resp.json().then(function(json) {
-		//console.log(json);
-		// page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始，如果想隨機載入可以用這個
-		// console.log(page); // 確認 page 變數
+			//console.log(json);
+			// page = Math.floor(Math.random()*100 + 8); // 隨機 8 ~ 108 開始，如果想隨機載入可以用這個
+			// console.log(page); // 確認 page 變數
                     let data = json.result.results.slice(page, page+8); //取出八筆 array 資料
                     data.forEach(function(item) {
                         let newDIV = document.createElement("div"); //創建父項
