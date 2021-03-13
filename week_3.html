@@ -23,7 +23,7 @@ function addData(){
 
 // 創建元素
 function createMyElement(){
-	let content = document.getElementById("content"); // 抓要插入 DIV 的節點位置
+	let content = document.querySelector("#content"); // 抓要插入 DIV 的節點位置 
 	fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json') //用 fetch 函式抓資料
 		.then(function(resp) {
 		//console.log(resp);
